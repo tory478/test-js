@@ -1,0 +1,9 @@
+h1 {
+  color: cadetblue;
+  font-size: 25px;
+}
+
+.selected {
+  color: red;
+}
+

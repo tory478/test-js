@@ -1,0 +1,18 @@
+<!--<div class="col-12"> -->
+<div>
+  <h2>{{currentHero.name}} Details</h2>
+  <div><span>id: </span>{{currentHero.id}}</div>
+  <div><span>name: </span>{{currentHero.name}}</div>
+  <div><span>date: </span>{{currentHero.date | date:"dd.MM.yyyy"}}</div>
+  <div class="form-group">
+    <label for="idInputid">ID</label>
+    <input [(ngModel)]="currentHero.id" class="form-control" id="idInputid" placeholder="id">
+    <!--  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+  </div>
+  <div class="form-group">
+    <label for="idInputbane">Name</label>
+    <input [(ngModel)]="currentHero.name" class="form-control" id="idInputbane" placeholder="name">
+  </div>
+  <!--<button type="submit" class="btn btn-primary">Submit</button> -->
+</div>
+
