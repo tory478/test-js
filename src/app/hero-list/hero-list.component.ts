@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Hero} from '../domain/domain.hero';
+import {HeroHttpService} from '../service/hero-http.service';
 
 @Component({
   selector: 'app-hero-list',
@@ -9,28 +10,13 @@ import {Hero} from '../domain/domain.hero';
 export class HeroListComponent implements OnInit {
   @Input()
   //heroes: Hero[];
-  heroes: Hero[] = [{
-    id: 1,
-    name: 'Windstorm',
-    date: new Date()
-  }, {
-    id: 2,
-    name: 'Apple iPhone',
-    date: new Date()
-  }, {
-    id: 3,
-    name: 'Huawei Mate',
-    date: new Date()
-  }, {
-    id: 4,
-    name: 'Samsung Galaxy',
-    date: new Date()
-  }];
+  heroes: Hero[] = [];
   currentHero: Hero;
 
-  constructor() { }
+  constructor( private heroHttpService: HeroHttpService) { }
 
   ngOnInit() {
+    this.heroHttpService.findAll().subscribe(x => this.heroes = x);
   }
 
   onSelect1(hero: Hero) {

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LoggerService} from './service/logger.service';
 import {Hero} from './domain/domain.hero';
 import {HeroServiceService} from './service/hero-service.service';
+import {HeroHttpService} from './service/hero-http.service';
 
 @Component({
   selector: 'app-root',
@@ -13,42 +14,18 @@ export class AppComponent implements OnInit {
   items = ['Apple iPhone', 'Huawei Mate', 'Samsung Galaxy'];
   x = 3;
 
-  //currentHero: Hero;
-
-  //heroes: Hero[];
-  /*heroes: Hero[] = [{
-    id: 1,
-    name: 'Windstorm',
-    date: new Date()
-  }, {
-    id: 2,
-    name: 'Apple iPhone',
-    date: new Date()
-  }, {
-    id: 3,
-    name: 'Huawei Mate',
-    date: new Date()
-  }, {
-    id: 4,
-    name: 'Samsung Galaxy',
-    date: new Date()
-  }];*/
+  heroes: Hero[] = [];
 
   logger: LoggerService;
-  heroService: HeroServiceService;
 
-  constructor(logger: LoggerService/*, heroService: HeroServiceService*/) {
+  constructor(logger: LoggerService, private heroService: HeroServiceService, private heroHttpService: HeroHttpService) {
     this.logger = logger;
-    //this.heroService = heroService;
+    this.heroService = heroService;
     this.logger.trace('AppComponent init');
   }
 
   ngOnInit(): void {
     this.logger.trace('AppComponent ngOnInit');
-    //this.heroes = this.heroService.findAll();
+    this.heroHttpService.findAll().subscribe(x => this.heroes = x);
   }
-
-  /*onSelect1(hero: Hero) {
-    this.currentHero = hero;
-  }*/
 }

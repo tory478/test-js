@@ -8,6 +8,10 @@ import {FormsModule} from '@angular/forms';
 import {FactorialPipe} from './pipes/factorial.pipe';
 import { BoldDirective } from './directives/bold.directive';
 import { HeroListComponent } from './hero-list/hero-list.component'; // <-- NgModel lives here
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './service/in-memory-data.service';
+import {HttpClientModule} from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { HeroListComponent } from './hero-list/hero-list.component'; // <-- NgMo
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, {dataEncapsulation: false}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
